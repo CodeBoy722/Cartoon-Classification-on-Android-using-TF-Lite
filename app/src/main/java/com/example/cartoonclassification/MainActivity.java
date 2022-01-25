@@ -139,11 +139,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
     private TensorImage loadImage(final Bitmap bitmap) {
         // Loads bitmap into a TensorImage.
         inputImageBuffer.load(bitmap);
