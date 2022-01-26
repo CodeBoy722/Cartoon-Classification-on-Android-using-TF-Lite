@@ -87,10 +87,6 @@ public class MainActivity extends AppCompatActivity {
         prediction=(TextView)findViewById(R.id.predictions);
 
 
-
-
-
-
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         try{
-            tflite=new Interpreter(loadmodelfile(MainActivity.this));
+            tflite = new Interpreter(loadmodelfile(MainActivity.this));
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
         buclassify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 int imageTensorIndex = 0;
                 int[] imageShape = tflite.getInputTensor(imageTensorIndex).shape(); // {1, height, width, 3}
                 imageSizeY = imageShape[1];
@@ -132,12 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 showresult();
             }
         });
-
-
-
     }
-
-
 
     private TensorImage loadImage(final Bitmap bitmap) {
         // Loads bitmap into a TensorImage.
@@ -170,6 +160,13 @@ public class MainActivity extends AppCompatActivity {
     private TensorOperator getPostprocessNormalizeOp(){
         return new NormalizeOp(PROBABILITY_MEAN, PROBABILITY_STD);
     }
+
+
+
+    //______________________________________________________________________________________________________________________________________
+
+
+
 
     public static void barchart(BarChart barChart, ArrayList<BarEntry> arrayList, final ArrayList<String> xAxisValues) {
         barChart.setDrawBarShadow(false);
@@ -207,7 +204,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void showresult(){
-
         try{
             labels = FileUtil.loadLabels(MainActivity.this,"cartoon_labels.txt");
         }catch (Exception e){
@@ -241,9 +237,6 @@ public class MainActivity extends AppCompatActivity {
             }
             barchart(mBarChart,barEntries,xAxisName);
             prediction.setText("Predictions:");
-
-
- //           }
         }
     }
 
